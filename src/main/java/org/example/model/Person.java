@@ -1,30 +1,32 @@
 package org.example.model;
 
 import javax.persistence.*;
+import java.util.List;
 
 @Entity
-@Table(name = "Person")
+@Table(name="person")
 public class Person {
 
     @Id
-    @Column(name="id")
-    @GeneratedValue(strategy = GenerationType.SEQUENCE,
-            generator = "seq_generator_person")
-    @SequenceGenerator(name = "seq_generator_person",
-    sequenceName = "person_id_seq",allocationSize = 1)
+    @Column(name =  "id")
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
 
-    @Column(name="name")
+    @Column(name = "name")
     private String name;
 
-    @Column(name="age")
+    @Column(name = "age")
     private int age;
 
-    public Person() {}
+    @OneToMany(mappedBy = "owner")
+    private List<Item> items;
 
     public Person(String name, int age) {
         this.name = name;
         this.age = age;
+    }
+
+    public Person() {
     }
 
     public int getId() {
@@ -51,10 +53,19 @@ public class Person {
         this.age = age;
     }
 
+    public List<Item> getItems() {
+        return items;
+    }
+
+    public void setItems(List<Item> items) {
+        this.items = items;
+    }
+
     @Override
     public String toString() {
         return "Person{" +
-                "name='" + name + '\'' +
+                "id=" + id +
+                ", name='" + name + '\'' +
                 ", age=" + age +
                 '}';
     }

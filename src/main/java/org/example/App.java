@@ -5,6 +5,8 @@ import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.cfg.Configuration;
 
+import java.util.List;
+
 public class App {
     public static void main( String[] args ) {
         Configuration configuration = new Configuration().addAnnotatedClass(Person.class);
@@ -14,15 +16,11 @@ public class App {
         try {
             session.beginTransaction();
 
-            Person person1 = new Person("ivan",33);
-            Person person2 = new Person("Boris",34);
-            Person person3 = new Person("Ali",32);
-
-            session.save(person1);
-            session.save(person2);
-            session.save(person3);
+            session.createQuery("delete from Person where age < 40").executeUpdate();
 
             session.getTransaction().commit();
+
+
         } finally {
             sessionFactory.close();
         }

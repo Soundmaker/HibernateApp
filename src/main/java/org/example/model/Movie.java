@@ -11,15 +11,15 @@ public class Movie {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int movieId;
 
+    @ManyToOne
+    @JoinColumn(name = "director_id" , referencedColumnName = "director_id")
+    private Director creator;
+
     @Column(name ="name")
     private String name;
 
-    @Column(name ="year_of_product")
+    @Column(name ="year_of_production")
     private String yearOfProduct;
-
-    @ManyToOne()
-    @JoinColumn(name = "director_id" , referencedColumnName = "id")
-    private Director creator;
     public Movie() {
     }
 

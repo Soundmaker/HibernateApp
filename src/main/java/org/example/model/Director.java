@@ -4,12 +4,13 @@ import javax.persistence.*;
 import java.util.List;
 
 @Entity
-@Table(name = "director")
+@Table(name ="director")
 public class Director {
     @Id
     @Column(name = "director_id")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int id;
+    private int directorId;
+
 
     @Column(name ="name")
     private String name;
@@ -29,12 +30,12 @@ public class Director {
         this.movies = movies;
     }
 
-    public int getId() {
-        return id;
+    public int getDirectorId() {
+        return directorId;
     }
 
-    public void setId(int id) {
-        this.id = id;
+    public void setDirectorId(int id) {
+        this.directorId = id;
     }
 
     public String getName() {
@@ -64,7 +65,7 @@ public class Director {
     @Override
     public String toString() {
         return "Director{" +
-                "id=" + id +
+                "id=" + directorId +
                 ", name='" + name + '\'' +
                 ", age=" + age +
                 '}';

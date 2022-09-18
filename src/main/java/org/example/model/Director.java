@@ -1,6 +1,7 @@
 package org.example.model;
 
 import javax.persistence.*;
+import java.util.List;
 
 @Entity
 @Table(name = "director")
@@ -16,12 +17,16 @@ public class Director {
     @Column(name = "age")
     private int age;
 
+    @OneToMany(mappedBy = "creator")
+    private List<Movie> movies;
+
     public Director() {
     }
 
-    public Director(String name, int age) {
+    public Director(String name, int age,List<Movie> movies) {
         this.name = name;
         this.age = age;
+        this.movies = movies;
     }
 
     public int getId() {
@@ -46,6 +51,14 @@ public class Director {
 
     public void setAge(int age) {
         this.age = age;
+    }
+
+    public List<Movie> getMovies() {
+        return movies;
+    }
+
+    public void setMovies(List<Movie> movies) {
+        this.movies = movies;
     }
 
     @Override

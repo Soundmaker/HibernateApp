@@ -17,12 +17,16 @@ public class Movie {
     @Column(name ="year_of_product")
     private String yearOfProduct;
 
+    @ManyToOne()
+    @JoinColumn(name = "director_id" , referencedColumnName = "id")
+    private Director creator;
     public Movie() {
     }
 
-    public Movie(String name, String yearOfProduct) {
+    public Movie(String name, String yearOfProduct,Director creator) {
         this.name = name;
         this.yearOfProduct = yearOfProduct;
+        this.creator = creator;
     }
 
     public int getMovieId() {
@@ -47,6 +51,14 @@ public class Movie {
 
     public void setYearOfProduct(String yearOfProduct) {
         this.yearOfProduct = yearOfProduct;
+    }
+
+    public Director getCreator() {
+        return creator;
+    }
+
+    public void setCreator(Director creator) {
+        this.creator = creator;
     }
 
     @Override

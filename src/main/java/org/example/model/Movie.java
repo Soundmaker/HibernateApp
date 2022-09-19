@@ -29,6 +29,11 @@ public class Movie {
         this.creator = creator;
     }
 
+    public Movie(String name, int yearOfProduct) {
+        this.name = name;
+        this.yearOfProduct = yearOfProduct;
+    }
+
     public int getMovieId() {
         return movieId;
     }

@@ -20,11 +20,13 @@ public class App {
         try {
             session.beginTransaction();
 
-            Director director = session.get(Director.class,2);
+            Director director = new Director("Zack zack 2",20);
 
-            Movie movie = new Movie("Seven",1974, director);
+            Movie movie = new Movie("Nine",1976, director);
 
-            director.getMovies().add(movie);
+            director.setMovies(new ArrayList<>(Collections.singletonList(movie)));
+
+            session.save(director);
             session.save(movie);
 
             session.getTransaction().commit();

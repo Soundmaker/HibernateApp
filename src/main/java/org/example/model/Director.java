@@ -30,6 +30,11 @@ public class Director {
         this.movies = movies;
     }
 
+    public Director(String name, int age) {
+        this.name = name;
+        this.age = age;
+    }
+
     public int getDirectorId() {
         return directorId;
     }

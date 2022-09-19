@@ -20,14 +20,14 @@ public class App {
         try {
             session.beginTransaction();
 
-            Director director = session.get(Director.class,5);
-            List<Movie> movies = director.getMovies();
+            Director director = session.get(Director.class,4);
+            Movie movie = session.get(Movie.class,1);
+            movie.setCreator(director);
 
-            for (Movie movie: movies) {
-                session.remove(movie);
-            }
+            director.getMovies().add(movie);
+            movie.getCreator().getMovies().remove(movie);
 
-            director.getMovies().clear();
+
             session.getTransaction().commit();
         } finally {
             sessionFactory.close();

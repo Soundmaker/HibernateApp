@@ -19,11 +19,11 @@ public class Movie {
     private String name;
 
     @Column(name ="year_of_production")
-    private String yearOfProduct;
+    private int yearOfProduct;
     public Movie() {
     }
 
-    public Movie(String name, String yearOfProduct,Director creator) {
+    public Movie(String name, int yearOfProduct,Director creator) {
         this.name = name;
         this.yearOfProduct = yearOfProduct;
         this.creator = creator;
@@ -45,11 +45,11 @@ public class Movie {
         this.name = name;
     }
 
-    public String getYearOfProduct() {
+    public int getYearOfProduct() {
         return yearOfProduct;
     }
 
-    public void setYearOfProduct(String yearOfProduct) {
+    public void setYearOfProduct(int yearOfProduct) {
         this.yearOfProduct = yearOfProduct;
     }
 

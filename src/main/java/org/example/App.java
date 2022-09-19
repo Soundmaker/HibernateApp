@@ -19,13 +19,15 @@ public class App {
 
         try {
             session.beginTransaction();
-            Movie movie = session.get(Movie.class,2);
-            System.out.println(movie);
 
-            Director director = movie.getCreator();
-            System.out.println(director);
+            Director director = session.get(Director.class,2);
+
+            Movie movie = new Movie("Seven",1974, director);
+
+            director.getMovies().add(movie);
+            session.save(movie);
+
             session.getTransaction().commit();
-
         } finally {
             sessionFactory.close();
         }

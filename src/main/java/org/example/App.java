@@ -20,15 +20,14 @@ public class App {
         try {
             session.beginTransaction();
 
-            Director director = new Director("Zack zack 2",20);
+            Director director = session.get(Director.class,5);
+            List<Movie> movies = director.getMovies();
 
-            Movie movie = new Movie("Nine",1976, director);
+            for (Movie movie: movies) {
+                session.remove(movie);
+            }
 
-            director.setMovies(new ArrayList<>(Collections.singletonList(movie)));
-
-            session.save(director);
-            session.save(movie);
-
+            director.getMovies().clear();
             session.getTransaction().commit();
         } finally {
             sessionFactory.close();
